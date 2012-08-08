@@ -17,7 +17,7 @@ WHITE_BOLD=$fg_bold[white]
 BLUE_BOLD=$fg_bold[blue]
 RESET_COLOR=$reset_color
 CYAN=$fg[cyan]
-GREY=$fg[black]
+GREY=$fg_bold[black]
 
 # Format for git_prompt_info()
 ZSH_THEME_GIT_PROMPT_PREFIX=""
@@ -51,14 +51,14 @@ fi
 
 # Check if we are on SSH or not
 if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then 
-  eval _HOST='${GREEN}@%M' #SSH
+  eval _HOST='${GREEN}%M' #SSH
 else
-  eval _HOST='${CYAN}@%M' # no SSH
+  eval _HOST='${CYAN}%M' # no SSH
 fi
 
 # Prompt format
 PROMPT="
-${_USER}${_HOST} %{$YELLOW%}%~%u$(parse_git_dirty)$(git_prompt_ahead) %{$BLUE%}%D{[%I:%M:%S]}%{$RESET_COLOR%}
-%(?,%{%F{green}%},%{%F{red}%})⚡%{$reset_color%} "
+${_USER}%{$GREY%}@${_HOST} %{$YELLOW%}%~%u$(parse_git_dirty)$(git_prompt_ahead) %{$BLUE%}%D{[%I:%M:%S]}%{$RESET_COLOR%}
+%(?,%{%F{green}%},%{%F{red}%})⚡%{$RESET_COLOR%} "
 RPROMPT='%{$GREEN_BOLD%}$(current_branch)$(git_prompt_short_sha)$(git_prompt_status)%{$RESET_COLOR%}'
 

@@ -1,5 +1,6 @@
 # ------------------------------------------------------------------------
-# Juan G. Hurtado oh-my-zsh theme
+# Kepi's oh-my-zsh theme
+# modification of Juan G. Hurtado and couple of others themes
 # (Needs Git plugin for current_branch method)
 # ------------------------------------------------------------------------
 
@@ -43,21 +44,21 @@ ZSH_THEME_GIT_PROMPT_SHA_AFTER="%{$WHITE%}]"
 
 # Check the UID
 if [[ $UID -ge 1000 ]]; then # normal user
-  eval PR_USER='${PR_GREEN}%n${PR_NO_COLOR}'
+  eval _USER='${WHITE}%n'
 elif [[ $UID -eq 0 ]]; then # root
-  eval PR_USER='${PR_RED}%n${PR_NO_COLOR}'
+  eval _USER='${RED}%n'
 fi
 
 # Check if we are on SSH or not
 if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then 
-  eval PR_HOST='${PR_YELLOW}%M${PR_NO_COLOR}' #SSH
+  eval _HOST='${GREEN}@%M' #SSH
 else
-  eval PR_HOST='${PR_GREEN}%M${PR_NO_COLOR}' # no SSH
+  eval _HOST='${CYAN}@%M' # no SSH
 fi
 
 # Prompt format
-PROMPT='
-%{$WHITE%}${PR_USER}${CYAN}@${PR_HOST}%{$WHITE%} %{$YELLOW%}%~%u$(parse_git_dirty)$(git_prompt_ahead) %{$BLUE%}%D{[%I:%M:%S]}%{$RESET_COLOR%}
-%(?,%{%F{green}%},%{%F{red}%})⚡%{$reset_color%} '
+PROMPT="
+${_USER}${_HOST} %{$YELLOW%}%~%u$(parse_git_dirty)$(git_prompt_ahead) %{$BLUE%}%D{[%I:%M:%S]}%{$RESET_COLOR%}
+%(?,%{%F{green}%},%{%F{red}%})⚡%{$reset_color%} "
 RPROMPT='%{$GREEN_BOLD%}$(current_branch)$(git_prompt_short_sha)$(git_prompt_status)%{$RESET_COLOR%}'
 

@@ -59,6 +59,6 @@ fi
 # Prompt format
 PROMPT="
 ${_USER}%{$GREY%}@${_HOST} %{$YELLOW%}%~%u$(parse_git_dirty)$(git_prompt_ahead) %{$BLUE%}%D{[%I:%M:%S]}%{$RESET_COLOR%}
-%(?,%{%F{green}%},%{%F{red}%})⚡%{$RESET_COLOR%} "
+%(?,%{$fg[green]%},%{$fg[red]%})⚡%{$RESET_COLOR%} "
 RPROMPT='%{$GREEN_BOLD%}$(current_branch)$(git_prompt_short_sha)$(git_prompt_status)%{$RESET_COLOR%}'
 
